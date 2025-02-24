@@ -29,7 +29,6 @@ public class FileValidateService {
             // Download file
             Path path = Paths.get(filePath);
 
-            // Optionally: Read the file stream to check line length and row count (streaming using BufferedReader)
             try (InputStream fileInputStream = new FileInputStream(path.toFile());
                  BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))) {
                 String line;
