@@ -1,6 +1,8 @@
 package com.example.pocimporttransaction.service;
 
 import com.example.pocimporttransaction.model.Record;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class PocImportTransService {
     private static final long MAX_SIZE = 1000000000;
     private static final int MAX_LINE_LENGTH = 41;
     private static final int MAX_ROW_COUNT = 1000000;
+    private static final String FILE_EXTENSION = "txt";
 
     @Autowired
     private StreamBridge streamBridge;
@@ -34,11 +37,17 @@ public class PocImportTransService {
         long startTime = System.currentTimeMillis();
         try {
             // Basic validations
+            // Valida file size
             if (file.getSize() > MAX_SIZE) {
                 System.out.println("file size : " + file.getSize());
                 return "File size exceeds limit.";
             }
-            // Optionally: Read the file stream to check line length and row count (streaming using BufferedReader)
+            // Validate file extension
+            if (!FILE_EXTENSION.equalsIgnoreCase(FilenameUtils.getExtension(file.getOriginalFilename()))) {
+                System.out.println("file extension : " + file.getOriginalFilename());
+                return "File extension doesn't match to allow.";
+            }
+            // Read the file stream to check line length and row count (streaming using BufferedReader)
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(file.getInputStream()))) {
                 String line;
