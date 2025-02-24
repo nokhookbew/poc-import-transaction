@@ -26,7 +26,7 @@ public class FileValidateService {
         long startTime = System.currentTimeMillis();
         List<Record> batch = new ArrayList<>();
         try {
-            // Download file
+            // Get file location
             Path path = Paths.get(filePath);
 
             try (InputStream fileInputStream = new FileInputStream(path.toFile());
