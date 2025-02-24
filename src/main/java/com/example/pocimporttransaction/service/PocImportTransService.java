@@ -32,7 +32,6 @@ public class PocImportTransService {
     public String uploadFileBufferReader(MultipartFile file) {
         String executeTime = "execution time : ";
         long startTime = System.currentTimeMillis();
-        List<Record> batch = new ArrayList<>();
         try {
             // Basic validations
             if (file.getSize() > MAX_SIZE) {
