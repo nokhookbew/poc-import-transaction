@@ -24,7 +24,7 @@ public class FileValidateService {
     public void uploadFileBufferReader(String filePath) {
         String executeTime = "execution time : ";
         long startTime = System.currentTimeMillis();
-        List<com.example.pocimporttransaction.model.Record> batch = new ArrayList<>();
+        List<Record> batch = new ArrayList<>();
         try {
             // Download file
             Path path = Paths.get(filePath);
