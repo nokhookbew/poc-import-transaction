@@ -54,7 +54,6 @@ public class PocImportTransService {
                 Integer rowCount = 0;
                 while ((line = reader.readLine()) != null) {
                     rowCount++;
-                    System.out.println("line : " + rowCount + " data : " + line);
                     if (line.length() > MAX_LINE_LENGTH) {
                         return "A line exceeds allowed length.";
                     }
